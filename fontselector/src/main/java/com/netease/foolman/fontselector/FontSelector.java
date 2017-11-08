@@ -52,6 +52,9 @@ public class FontSelector extends View {
     private @ColorInt
     int mLineColor;
 
+    private @ColorInt
+    int mTextChosedColor;
+
     private int mTextHeight;
 
     private int itemGap;
@@ -84,6 +87,7 @@ public class FontSelector extends View {
 
         mLineColor = Color.WHITE;
         mTextColor = Color.WHITE;
+        mTextChosedColor = Color.RED;
 
         mLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mLinePaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -158,8 +162,8 @@ public class FontSelector extends View {
                 Math.max(defaultLineWidth, mCircleBitmapHeight) + getPaddingBottom());
         int defaultWidthSize = getPaddingLeft() + getPaddingRight() + mCircleBitmapWidth;
 
-        if (defaultWidthSize < defaultHeigthSize/0.618 ) {
-            defaultWidthSize = (int) (defaultHeigthSize /0.618);
+        if (defaultWidthSize < defaultHeigthSize / 0.618) {
+            defaultWidthSize = (int) (defaultHeigthSize / 0.618);
         }
 
         if (heightMeasureMode == MeasureSpec.AT_MOST && widthMeasureMode == MeasureSpec.AT_MOST) {
@@ -196,6 +200,8 @@ public class FontSelector extends View {
 
         int textY = getPaddingTop() + mTextHeight;
         for (int i = 0; i < textsList.size(); i++) {
+            int tempTextColor = i == mCurrentPosition ? mTextChosedColor : mTextColor;
+            mTextPaint.setColor(tempTextColor);
             String text = textsList.get(i);
             if (!TextUtils.isEmpty(text)) {
                 float currentTextWidth = mTextPaint.measureText(textsList.get(i));
@@ -221,10 +227,10 @@ public class FontSelector extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 float tempUpX = event.getX();
-                mCurrentPosition = adjustCirclePos(tempUpX+mCircleBitmapWidth / 2);
+                mCurrentPosition = adjustCirclePos(tempUpX + mCircleBitmapWidth / 2);
                 if (mCurrentPosition != INVALID_POSITION) {
                     mCircleDrawX = pointsList.get(mCurrentPosition) - mCircleBitmapWidth / 2;
-                    if (mListener != null&&mCurrentPosition!=mLastPosition) {
+                    if (mListener != null && mCurrentPosition != mLastPosition) {
                         mListener.onPositionChanged(mCurrentPosition);
                     }
                     mLastPosition = mCurrentPosition;
@@ -241,7 +247,7 @@ public class FontSelector extends View {
             int point = pointsList.get(i);
             String text = textsList.get(i);
             float textWidth = mTextPaint.measureText(text);
-            if (Math.abs(circleDrawX - point) < (itemGap+textWidth) / 2) {
+            if (Math.abs(circleDrawX - point) < (itemGap + textWidth) / 2) {
                 return i;
             }
         }
