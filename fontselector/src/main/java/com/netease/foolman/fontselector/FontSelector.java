@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -25,7 +26,6 @@ import java.util.List;
 public class FontSelector extends View {
 
     private static final int INVALID_POSITION = -1;
-
     private static final int DEFAULT_GAP_DP = 6;
     private static final int DEFAULT_LINE_WIDTH = 2;
     private static final int DEFAULT_TEXT_SIZE = 16;
@@ -82,14 +82,19 @@ public class FontSelector extends View {
         defaultTextSize = Converter.dp2px(getContext(), DEFAULT_TEXT_SIZE);
         defaultCircleBitmapResourceId = R.drawable.news_base_menu_change_font_icon;
 
+        mLineColor = Color.WHITE;
+        mTextColor = Color.WHITE;
+
         mLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mLinePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mLinePaint.setStrokeWidth(defaultLineWidth);
+        mLinePaint.setColor(mLineColor);
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setStyle(Paint.Style.FILL);
         mTextPaint.setTextSize(defaultTextSize);
         mTextPaint.setTextAlign(Paint.Align.LEFT);
+        mTextPaint.setColor(mTextColor);
 
         Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
         mTextHeight = (int) Math.abs(fontMetrics.bottom - fontMetrics.top);

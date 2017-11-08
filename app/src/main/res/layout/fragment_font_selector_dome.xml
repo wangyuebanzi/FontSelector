@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.netease.foolman.fontselector.FontSelectorDomeActivityFragment"
-    tools:showIn="@layout/activity_font_selector_dome"
-    android:orientation="vertical">
+    tools:showIn="@layout/activity_font_selector_dome">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -22,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="#ff1fffff"
+        android:background="#466cb8"
         android:paddingBottom="100dp"
         android:paddingTop="40dp" />
 </LinearLayout>

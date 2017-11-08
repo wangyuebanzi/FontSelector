@@ -7,4 +7,14 @@
         <item>大</item>
         <item>特大</item>
     </string-array>
+
+    <integer-array name="text_size">
+        <item>16</item>
+        <item>20</item>
+        <item>24</item>
+        <item>28</item>
+
+    </integer-array>
+
+
 </resources>
